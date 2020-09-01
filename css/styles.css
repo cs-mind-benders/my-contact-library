@@ -1,0 +1,78 @@
+body {
+    background:#404b69;
+}
+.main-header {
+    color: #fff;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.top-nav {
+    background-color: #1e2833;
+}
+
+.contacts {
+    padding:5px 10px 0;
+    font-size:40px;
+    color:#FFFFFF;
+}
+
+.card {
+    background-color:#1e2833;
+    box-shadow: 3px 3px 4px rgba(0,0,0,0.2);
+    padding-bottom: 15px;
+}
+
+.form-control {
+    background:none;
+    border:none;
+    border-bottom:1px solid #434a52;
+    color: #1e2833;
+}
+
+.form-control:focus {
+    background-color: #1e2833;
+    border:none;
+}
+
+.login-icon {
+    text-align:center;
+    padding:10px 0 10px;
+    font-size:100px;
+    color:#FFFFFF;
+}
+
+.btn-primary {
+    background:#214a80;
+    border:none;
+    border-radius:4px;
+    padding:11px;
+    box-shadow:none;
+    margin-top:26px;
+    text-shadow:none;
+    outline:none;
+}
+  
+.btn-primary:hover, .btn-primary:active {
+    background:#214a80;
+    outline:none;
+}
+
+.login-help {
+    display:block;
+    text-align:center;
+    font-size:12px;
+    opacity:0.9;
+    text-decoration:none;
+}
+.login-help:hover {
+    color: #FFFFFF;
+}
+  
+.forgot:hover, .forgot:active {
+    opacity:1;
+    text-decoration:none;
+}
+  
+.btn-primary:active {
+    transform:translateY(1px);
+}
