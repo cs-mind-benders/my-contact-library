@@ -1,97 +1,97 @@
 body {
-    background-image: url(../images/1.png);
-    background-size: cover;
+  padding-top: 7em;
+  background-image: url(../images/login-background.png);
+  background-size: cover;
 }
 .main-header {
-    color: #fff;
-    font-family: 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif';
+  color: #fff;
+  font-family: "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode",
+    "Geneva", "Verdana", "sans-serif";
 }
 
 .top-nav {
-    background-color: #1e2833;
+  background-color: #1e2833;
 }
 
 .contacts {
-    padding:5px 10px 0;
-    font-size:40px;
-    color:#FFFFFF;
+  padding: 5px 10px 0;
+  font-size: 40px;
+  color: #ffffff;
+}
+.card-header,
+.card-footer {
+  border: none;
 }
 
 .card {
-    background-color:#1e2833;
-    box-shadow: 3px 3px 4px rgba(0,0,0,0.2);
-    padding-bottom: 15px;
+  background-color: #1e2833;
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
+  padding-bottom: 15px;
+}
+
+.card-title {
+  color: #ffffff;
+}
+
+.list-group-item {
+  background-color: inherit;
+  border: none;
+  text-decoration: none;
 }
 
 .form-control {
-    background:none;
-    border:none;
-    border-bottom:1px solid #434a52;
-    color: #ffffff;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #434a52;
+  color: #ffffff;
 }
 
 .form-control:focus {
-    background-color: #1e2833;
-    border:none;
-    color: #ffffff;
+  background-color: #1e2833;
+  border: none;
+  color: #ffffff;
 }
 
 .login-icon {
-    text-align:center;
-    padding:10px 0 10px;
-    font-size:100px;
-    color:#FFFFFF;
+  text-align: center;
+  color: #ffffff;
+  font-size: 6em;
 }
 
 .btn-primary {
-    background:#0b50aa;
-    border:none;
-    border-radius:4px;
-    padding:11px;
-    box-shadow:none;
-    margin-top:26px;
-    text-shadow:none;
-    outline:none;
+  background: #0b50aa;
+  border: none;
+  border-radius: 4px;
+  padding: 11px;
+  box-shadow: none;
+  margin-top: 26px;
+  text-shadow: none;
+  outline: none;
 }
-  
-.btn-primary:hover, .btn-primary:active {
-    background:#214a80;
-    outline:none;
+
+.btn-primary:hover,
+.btn-primary:active {
+  background: #214a80;
+  outline: none;
 }
 
 .login-help {
-    display:block;
-    text-align:center;
-    font-size:14px;
-    opacity:0.9;
-    text-decoration:none;
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.9;
+  text-decoration: none;
 }
 .login-help:hover {
-    color: #FFFFFF;
+  color: #ffffff;
 }
-  
-.forgot:hover, .forgot:active {
-    opacity:1;
-    text-decoration:none;
+
+.forgot:hover,
+.forgot:active {
+  opacity: 1;
+  text-decoration: none;
 }
-  
+
 .btn-primary:active {
-    transform:translateY(1px);
-}
-
-.blue-text {
-    color: #0b50aa;
-}
-
-.dark-text {
-    color: #1e2833;
-}
-
-.light-text {
-    color: #FFFFFF;
-}
-
-.card-text {
-    font-size: 17.8px;
-    font-family: 'Times New Roman', Times, serif;
+  transform: translateY(1px);
 }

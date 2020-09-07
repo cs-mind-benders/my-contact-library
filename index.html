@@ -9,83 +9,94 @@
 </head>
 <body>
 <div class="container">
-        <nav class="top-nav navbar navbar-expand-md fixed-top">
-            <h3 class="main-header">My Contacts Library</h3>
-            <div class="contacts">
-                <i class="icon ion-android-contacts"></i>
-            </div>
-        </nav>
-        <div class="row">
-            <div class="col-md-12 min-vh-100 d-flex flex-column justify-content-center">
-                <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <div class="bg-light text-dark main-header card rounded">
-                            <div class="card-header dark-text card-text">
-                                <br>
-                                <nav class="navbar navbar-light rounded justify-content-center top-nav" >
-                                    <h2 class="light-text" style="text-align:center;">Welcome Back!</h2>
-                                </nav>
-                                <br>
-                                <h4 class="blue-text" style="text-align:center;">Stay connected and never lose touch with your loved ones. We will keep your contacts safe so you don’t need to! Login to view your contacts library.</h4>
-                                <br>
-                                <h4 font-size:25px;><b class="dark-text">Features:</b></h4>
-                                <i class="icon ion-person-add blue-text"></i>
-                                Add your contacts
-                                <br>
-                                <i class="icon ion-edit blue-text"></i>
-                                Update/Edit existing contacts
-                                <br>
-                                <i class="icon ion-android-delete blue-text"></i>
-                                Delete existing contacts
-                                <br>
-                                <i class="icon ion-search blue-text"></i>
-                                Search for specific contacts
-                                <br>
-                                <i class="icon ion-android-favorite blue-text"></i>
-                                Add key people to your Favorites list to quickly access their contact information
-                                <br>
-                                <br>
-                                
-                            </div>
-                            
-                        </div>
-                        
-                    </div>
-                    <div class="col-lg-4 col-md-8 mx-auto">
-                        <div class="card rounded shadow shadow-sm">
-                            <div class="card-header">
-                                <div class="login-icon">
-                                    <i class="icon ion-log-in"></i>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <form class="form" role="form" autocomplete="off" method="POST">
-                                    <div class="form-group">
-                                        <input class="form-control" type="username" name="username" placeholder="Username">
-                                        <div class="invalid-feedback">Oops, you missed this one.</div>
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control" type="password" name="password" placeholder="Password">
-                                    </input>
-                                        <div class="invalid-feedback">Enter your password too!</div>
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-primary btn-block" type="submit">Log In</button>
-                                    </div>
-                                    </div>
-                                    <a class="login-help" href="#">New user?</a>
-                                    <a class="login-help" href="#" >Forgot your email or password?</a>
-                                </form>
-                            </div>
-                        </div>
+    <nav class="top-nav navbar navbar-expand-md fixed-top">
+        <h3 class="main-header">My Contacts Library</h3>
+        <div class="contacts">
+            <i class="icon ion-android-contacts"></i>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-md-6 py-2 mx-auto">
+            <div class="card h-100 text-white main-header rounded">
+                <div class="card-header card-text">
+                    <div class="card-body">
+                        <h2 class="card-title">Welcome Back!</h2>
+                        <p>Stay connected and never lose touch with your loved ones. We will keep your contacts safe so you don’t need to! Login to view your contacts library.</p>
+                        <p>Features:</p>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="#">
+                                    <i class="icon ion-person-add"></i>
+                                    Add your contacts
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="#">
+                                    <i class="icon ion-edit"></i>
+                                    Update/Edit existing contacts
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="#">
+                                    <i class="icon ion-android-delete"></i>
+                                    Delete existing contacts
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="#">
+                                    <i class="icon ion-search"></i>
+                                    Search for specific contacts
+                                </a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="#">
+                                    <i class="icon ion-android-favorite"></i>
+                                    Add key people to your Favorites list to quickly access their contact information
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="col-md-6 py-2 mx-auto">
+            <div class="card h-100 text-center rounded shadow">
+                <div class="card-header">
+                    <div class="login-icon">
+                        <i class="icon ion-log-in"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Login</h3>
+                    <form class="form" role="form" autocomplete="off" method="POST">
+                        <div class="form-group">
+                            <input class="form-control" type="username" name="username" placeholder="Username" id="loginUsername">
+                            <div class="invalid-feedback">Oops, you missed this one.</div>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="password" name="password" placeholder="Password" id="loginPassword">
+                        </input>
+                            <div class="invalid-feedback">Enter your password too!</div>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" type="button" onclick="doLogin()">Log In</button>
+                        </div>
+                        <span id="loginResult"></span>
+                        <div class="card-footer">
+                                <a class="login-help" href="#">New user?</a>
+                                <a class="login-help" href="#" >Forgot your email or password?</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+<script src="js/login.js"></script>
 </body>
 </html>
