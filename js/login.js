@@ -1,7 +1,7 @@
 // Listen for the enter key press to "submit" the form
 window.addEventListener(
   "keypress",
-  function(e) {
+  function (e) {
     if (e.keyCode === 13) {
       doLogin();
     }
@@ -30,7 +30,7 @@ function doLogin() {
 
   let jsonPayload = {
     Login: login,
-    Password: hash
+    Password: hash,
   };
 
   let url = urlBase + "/Login." + extension;
@@ -60,7 +60,7 @@ function doLogin() {
         "Error logging in, please try again.";
     } else {
       saveCookie();
-      window.location.href = "https://google.com";
+      window.location.href = "index.html";
     }
   } catch (err) {
     document.getElementById("loginResult").innerHTML = err.message;
@@ -68,16 +68,11 @@ function doLogin() {
 }
 
 function saveCookie() {
-  let minutes = 20;
+  let minutes = 90;
   let date = new Date();
   date.setTime(date.getTime() + minutes * 60 * 1000);
-  document.cookie =
-    "firstName=" +
-    firstName +
-    ",lastName=" +
-    lastName +
-    ",userId=" +
-    userId +
-    ";expires=" +
-    date.toGMTString();
+  document.cookie = `firstName=${firstName}`;
+  document.cookie = `lastName=${lastName}`;
+  document.cookie = `userId=${userId}`;
+  document.cookie = `expires=${date.toGMTString()}`;
 }
