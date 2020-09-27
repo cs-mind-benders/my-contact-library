@@ -36,9 +36,56 @@
           <h5 class="nav-item active text-white" id="userName"></h5>
         </div>
       </nav>
-      <button type="button" class="btn btn-primary btn-rounded">
+      <button type="button" class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#addContactModalCenter" data-backdrop="static">
         Add a new contact
       </button>
+      <div class="modal fade" id="addContactModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="addTitle">New Contact</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetMessage()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form class="form" role="form" autocomplete="off" id="addForm" method="POST">
+              <div class="modal-body">
+                <div class="form-group">
+                  <input class="add-contact" name="firstname" placeholder="First Name" id="firstName">
+                  <div class="invalid-feedback">Oops, you missed this one.</div>
+                </div>
+                <div class="form-group">
+                  <input class="add-contact" name="lastname" placeholder="Last Name" id="lastName">
+                  <div class="invalid-feedback">Oops, you missed this one.</div>
+                </div>
+                <div class="form-group">
+                  <input class="add-contact" name="phone" placeholder="Phone" id="phone">
+                  <div class="invalid-feedback">Oops, you missed this one.</div>
+                </div>
+                <div class="form-group">
+                  <input class="add-contact" name="email" placeholder="Email" id="email">
+                  <div class="invalid-feedback">Oops, you missed this one.</div>
+                </div>
+              </div>
+              <h6 id="addMessage" style="text-align:center; color:green;"></h6>
+              <div class="modal-footer">
+                <button id="addText" type="button" class="btn btn-primary" onclick="addContact()">Add</button>
+              </div>
+              <span class="text-white" id="addResult"></span>
+              </form>
+              <script>
+                function resetMessage() {
+                  document.getElementById(
+                  "addMessage"
+                  ).innerHTML = ``;
+                }
+                </script>
+            </div>
+          </div>
+        </div>
+           
+            
+
       <div class="row">
         <div class="pt-4 col">
           <div class="rounded">
