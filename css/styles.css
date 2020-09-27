@@ -15,10 +15,6 @@ body {
   color: #fff;
 }
 
-#userName {
-  text-transform: capitalize;
-}
-
 .top-nav {
   background-color: #1e2833;
   padding-bottom: 15px;
@@ -121,15 +117,10 @@ body {
   outline: none;
 }
 
-#search-table {
-  padding-top: 10px;
-}
-
-#search-results-error {
-  display: none;
-}
-
-.contact-action {
+#search-results {
+  background-color: white;
+  width: 100%;
+  margin-top: 10px;
   color: black;
 }
 

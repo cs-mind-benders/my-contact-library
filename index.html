@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>My Contacts Library</title>
-    <script type="text/javascript" src="js/index.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
@@ -18,25 +17,18 @@
       crossorigin="anonymous"
     />
     <link href="css/styles.css" rel="stylesheet" />
-    <script type="text/javascript">
-      document.addEventListener('DOMContentLoaded', function() 
-      {
-        isAuthenticated();
-      }, false);
-      </script>
   </head>
   <body>
     <div class="container">
-      <nav class="top-nav navbar fixed-top">
-        <div class="float-left">
-          <a class="navbar-brand main-header" href="index.html"><h3>My Contacts Library</h3></a>
-          <i class="icon ion-android-contacts contacts"></i>
-        </div>
-        <div class="float-right">
-          <h5 class="nav-item active text-white" id="userName"></h5>
+      <nav class="top-nav navbar navbar-expand-md fixed-top">
+        <a class="main-header" href="index.html">
+          <h3>My Contacts Library</h3>
+        </a>
+        <div class="contacts">
+          <i class="icon ion-android-contacts"></i>
         </div>
       </nav>
-      <button type="button" class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#addContactModalCenter" data-backdrop="static">
+      <button type="button" class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#addContactModalCenter">
         Add a new contact
       </button>
       <div class="modal fade" id="addContactModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -98,21 +90,7 @@
                 id="searchText"
               />
             </form>
-            <p id="search-results-error"></p>
-            <div id="search-table">
-              <table class="table table-light table-striped rounded">
-                <thead>
-                  <tr>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody id="search-results"></tbody>
-              </table>
-            </div>
+            <ul id="search-results"></ul>
           </div>
         </div>
       </div>
@@ -132,5 +110,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <script src="js/add.js"></script>
+    <script src="js/search.js"></script>
   </body>
 </html>
