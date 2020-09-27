@@ -15,6 +15,10 @@ body {
   color: #fff;
 }
 
+#userName {
+  text-transform: capitalize;
+}
+
 .top-nav {
   background-color: #1e2833;
   padding-bottom: 15px;
@@ -117,10 +121,15 @@ body {
   outline: none;
 }
 
-#search-results {
-  background-color: white;
-  width: 100%;
-  margin-top: 10px;
+#search-table {
+  padding-top: 10px;
+}
+
+#search-results-error {
+  display: none;
+}
+
+.contact-action {
   color: black;
 }
 
@@ -130,11 +139,11 @@ body {
   border-bottom: 1px solid #434a52;
   color: #000000;
   width: 100%;
-  padding: .475rem .75rem;
+  padding: 0.475rem 0.75rem;
 }
 
 .add-contact:focus {
   border: none;
   color: #000000;
-  padding: .475rem .75rem;
+  padding: 0.475rem 0.75rem;
 }
