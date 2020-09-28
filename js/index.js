@@ -50,7 +50,7 @@ function getUserId() {
   return userId;
 }
 
-function resetMessage() {
+function resetDeleteMessage() {
   document.getElementById(
     "deleteMessage"
   ).innerHTML = ``;
@@ -111,7 +111,7 @@ function searchContact() {
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5 class="modal-title" id="exampleModalLongTitle" style="color:black;">Are you sure?</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetMessage()">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetDeleteMessage()">
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
