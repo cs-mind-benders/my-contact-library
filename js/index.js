@@ -50,6 +50,13 @@ function getUserId() {
   return userId;
 }
 
+function resetMessage() {
+  document.getElementById(
+    "deleteMessage"
+  ).innerHTML = ``;
+  searchContact();
+}
+
 function searchContact() {
   userId = getUserId();
   var searchText = document.getElementById("searchText").value;
@@ -57,7 +64,7 @@ function searchContact() {
   var searchTable = document.getElementById("search-table");
   var searchResultsError = document.getElementById("search-results-error");
 
-  if (searchText.length >= 3) {
+  if (searchText.length >= 1) {
     let jsonPayload = {
       search: searchText,
       UserID: userId,
@@ -70,6 +77,7 @@ function searchContact() {
     //   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     try {
       xhr.onreadystatechange = function () {
+      // xhr.onreadystatechange = function () {
         if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
           let jsonObject = JSON.parse(xhr.responseText);
           contacts = jsonObject.results;
@@ -88,17 +96,43 @@ function searchContact() {
                 <td>${contact.email}</td>
                 <td>
                   <a href="#">
-                    <i onclick="editContact(${contact.id})" class="icon ion-edit contact-action">
-                    </i>
-                  </a>
-                <a href="#">
-                  <i onclick="deleteContact(${contact.id})" class="icon ion-android-delete contact-action">
+                  <button type="button" class="btn btn-outline-info btn-rounded btn-sm">
+                  <i onclick="editContact(${contact.id})" class="icon ion-edit contact-action">
                   </i>
-                </a>
+                  </button> 
+                  </a>
+                  <a href="#">
+                  <button type="button" class="btn btn-outline-danger btn-rounded btn-sm" data-toggle="modal" data-target="#deleteContactModalCenter">
+                  <i class="icon ion-android-delete contact-action">
+                  </i>
+                  </button>
+                  <div class="modal fade" id="deleteContactModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle" style="color:black;">Are you sure?</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetMessage()">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <form class="form" role="form" autocomplete="off" id="deleteForm" method="POST">
+                        <div class="modal-body" style="color:black;">
+                        Are you sure you want to delete this contact?
+                        </div>
+                        <h6 id="deleteMessage" style="text-align:center; color:red;"></h6>
+                        <div class="modal-footer">
+                          <button id="deleteButton" onclick="deleteContact(${contact.id})" type="button" class="btn btn-danger" data-dismiss="">Yes, delete</button>
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  </a>
                 </td>
               </tr>
               `;
             }
+            
           } else {
             searchResultsError.style.display = "block";
             searchResultsError.innerHTML = "<p>No contacts found.</p>";
@@ -122,7 +156,30 @@ function editContact(id) {
 }
 
 function deleteContact(id) {
-  // call delete api
-  console.log(id);
-  return true;
+  // console.log(id);
+  // return true;
+  // document.getElementById("delete-confirm").innerHTML += ``;
+
+  let jsonPayload = {
+    contactID: id,
+  };
+
+  let url = urlBase + "/DeleteContact." + extension;
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+
+  try {
+
+    xhr.onreadystatechange = function() {
+      if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+        // document.getElementById("modal").style.display = "none";
+        document.getElementById("deleteMessage").innerHTML = "Contact Deleted";
+        // document.getElementById("deleteForm").style.display = "none";
+      }
+    };
+
+    xhr.send(JSON.stringify(jsonPayload));
+  }catch (err) {
+    document.getElementById("addResult").innerHTML = err.message;
+  }
 }
