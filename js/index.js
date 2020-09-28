@@ -9,7 +9,7 @@ var contacts = [];
 function isAuthenticated() {
   userId = getUserId();
 
-  if (userId < 0) {
+  if (!userId || userId < 0) {
     window.location.href = "login.html";
   } else {
     getName();
@@ -54,64 +54,65 @@ function searchContact() {
   userId = getUserId();
   var searchText = document.getElementById("searchText").value;
   var searchResults = document.getElementById("search-results");
-  var searchTable = document.getElementById("search-table");
-  var searchResultsError = document.getElementById("search-results-error");
 
-  if (searchText.length >= 3) {
-    let jsonPayload = {
-      search: searchText,
-      UserID: userId,
-    };
+  let jsonPayload = {
+    search: searchText,
+    UserID: userId,
+  };
 
-    var url = urlBase + "/Search." + extension;
+  var url = urlBase + "/Search." + extension;
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    //   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try {
-      xhr.onreadystatechange = function () {
-        if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-          let jsonObject = JSON.parse(xhr.responseText);
-          contacts = jsonObject.results;
-          console.log(contacts);
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+  //   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+        let jsonObject = JSON.parse(xhr.responseText);
+        contacts = jsonObject.results;
 
-          searchResults.innerHTML = "";
+        searchResults.innerHTML = "";
 
-          if (contacts.length > 0) {
-            for (i = 0; i < contacts.length; i++) {
-              let contact = contacts[i];
-              searchResults.innerHTML += `
-              <tr>
-                <td>${contact.firstName}</td>
-                <td>${contact.lastName}</td>
-                <td>${contact.phone}</td>
-                <td>${contact.email}</td>
-                <td>
-                  <a href="#">
-                    <i onclick="editContact(${contact.id})" class="icon ion-edit contact-action">
-                    </i>
-                  </a>
+        if (contacts.length > 0) {
+          if ($.fn.DataTable.isDataTable("#resultsTable")) {
+            $("#resultsTable").DataTable().clear().destroy();
+          }
+          for (i = 0; i < contacts.length; i++) {
+            let contact = contacts[i];
+            searchResults.innerHTML += `
+            <tr>
+              <td>${contact.firstName}</td>
+              <td>${contact.lastName}</td>
+              <td>${contact.phone}</td>
+              <td>${contact.email}</td>
+              <td>
                 <a href="#">
-                  <i onclick="deleteContact(${contact.id})" class="icon ion-android-delete contact-action">
+                  <i onclick="editContact(${contact.id})" class="icon ion-edit contact-action">
                   </i>
                 </a>
-                </td>
-              </tr>
-              `;
-            }
-          } else {
-            searchResultsError.style.display = "block";
-            searchResultsError.innerHTML = "<p>No contacts found.</p>";
+              <a href="#">
+                <i onclick="deleteContact(${contact.id})" class="icon ion-android-delete contact-action">
+                </i>
+              </a>
+              </td>
+            </tr>
+            `;
           }
+          $("#resultsTable").DataTable({
+            searching: false,
+            lengthChange: false,
+            language: {
+              emptyTable: "No contacts found.",
+            },
+          });
+        } else {
+          $("#resultsTable").DataTable().clear().draw();
         }
-      };
-      xhr.send(JSON.stringify(jsonPayload));
-    } catch (err) {
-      searchResults.innerHTML = err.message;
-    }
-  } else {
-    searchResultsError.style.display = "none";
-    searchResults.innerHTML = "";
+      }
+    };
+    xhr.send(JSON.stringify(jsonPayload));
+  } catch (err) {
+    searchResults.innerHTML = err.message;
   }
 }
 
@@ -164,4 +165,14 @@ function addContact() {
   } catch (err) {
     document.getElementById("addResult").innerHTML = err.message;
   }
+}
+
+function logout() {
+  userId = 0;
+  firstName = "";
+  lastName = "";
+  document.cookie = `firstName=;expires=Thu, 01 Jan 1970 00:00:00 GMT;`;
+  document.cookie = `lastName=;expires=Thu, 01 Jan 1970 00:00:00 GMT;`;
+  document.cookie = `userId=;expires=Thu, 01 Jan 1970 00:00:00 GMT;`;
+  window.location.href = "login.html";
 }

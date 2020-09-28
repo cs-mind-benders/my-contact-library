@@ -2,7 +2,9 @@
 <html>
   <head>
     <title>My Contacts Library</title>
-    <script type="text/javascript" src="js/index.js"></script>
+    <!-- stylesheets -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
@@ -11,17 +13,18 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
     <link href="css/styles.css" rel="stylesheet" />
+
+    <!-- scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', function() 
       {
         isAuthenticated();
+        searchContact();
       }, false);
       </script>
   </head>
@@ -32,9 +35,15 @@
           <a class="navbar-brand main-header" href="index.html"><h3>My Contacts Library</h3></a>
           <i class="icon ion-android-contacts contacts"></i>
         </div>
-        <div class="float-right">
-          <h5 class="nav-item active text-white" id="userName"></h5>
-        </div>
+          <ul class="nav ml-auto pb-2 flex-row align-items-center">
+            <li><h5 class="text-white pr-2 pt-2 d-none d-md-block" id="userName"></h5></li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="nav-item icon ion-navicon menu-icon"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a href="#" onclick="logout()" class="dropdown-item">Logout</a>
+                </div>
+            </li>
+        </ul>
       </nav>
       <button type="button" class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#addContactModalCenter" data-backdrop="static">
         Add a new contact
@@ -83,9 +92,6 @@
             </div>
           </div>
         </div>
-           
-            
-
       <div class="row">
         <div class="pt-4 col">
           <div class="rounded">
@@ -98,9 +104,8 @@
                 id="searchText"
               />
             </form>
-            <p id="search-results-error"></p>
             <div id="search-table">
-              <table class="table table-light table-striped rounded">
+              <table class="table table-light table-striped rounded" id="resultsTable" data-pagination="true">
                 <thead>
                   <tr>
                     <th scope="col">First</th>
@@ -116,11 +121,6 @@
           </div>
         </div>
       </div>
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
