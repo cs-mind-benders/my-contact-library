@@ -89,44 +89,23 @@ function searchContact() {
             for (i = 0; i < contacts.length; i++) {
               let contact = contacts[i];
               searchResults.innerHTML += `
-              <tr>
+              <tr id="${contact.id}" class="table-row">
                 <td>${contact.firstName}</td>
                 <td>${contact.lastName}</td>
                 <td>${contact.phone}</td>
                 <td>${contact.email}</td>
                 <td>
                   <a href="#">
-                  <button type="button" class="btn btn-outline-info btn-rounded btn-sm">
-                  <i onclick="editContact(${contact.id})" class="icon ion-edit contact-action">
-                  </i>
-                  </button> 
+                    <button type="button" class="btn btn-outline-info btn-rounded btn-sm">
+                      <i onclick="editContact(${contact.id})" class="icon ion-edit contact-action">
+                      </i>
+                    </button> 
                   </a>
                   <a href="#">
-                  <button type="button" class="btn btn-outline-danger btn-rounded btn-sm" data-toggle="modal" data-target="#deleteContactModalCenter">
-                  <i class="icon ion-android-delete contact-action">
-                  </i>
-                  </button>
-                  <div class="modal fade" id="deleteContactModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLongTitle" style="color:black;">Are you sure?</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetDeleteMessage()">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <form class="form" role="form" autocomplete="off" id="deleteForm" method="POST">
-                        <div class="modal-body" style="color:black;">
-                        Are you sure you want to delete this contact?
-                        </div>
-                        <h6 id="deleteMessage" style="text-align:center; color:red;"></h6>
-                        <div class="modal-footer">
-                          <button id="deleteButton" onclick="deleteContact(${contact.id})" type="button" class="btn btn-danger" data-dismiss="">Yes, delete</button>
-                        </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
+                    <button type="button" class="btn btn-outline-danger btn-rounded btn-sm" data-toggle="modal" data-target="#deleteContactModalCenter">
+                      <i onclick="deleteConfirmation(${contact.id})" class="icon ion-android-delete contact-action">
+                      </i>
+                    </button>
                   </a>
                 </td>
               </tr>
@@ -135,7 +114,7 @@ function searchContact() {
             
           } else {
             searchResultsError.style.display = "block";
-            searchResultsError.innerHTML = "<p>No contacts found.</p>";
+            searchResultsError.innerHTML = "<h4>No contacts found.</h4>";
           }
         }
       };
@@ -155,9 +134,36 @@ function editContact(id) {
   return true;
 }
 
+function deleteConfirmation(id){
+  var searchResults = document.getElementById("search-results");
+
+  searchResults.innerHTML += `
+  <div class="modal fade" id="deleteContactModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle" style="color:black;">Are you sure?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetDeleteMessage()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="form" role="form" autocomplete="off" id="deleteForm" method="POST">
+      <div class="modal-body" style="color:black;">
+      Are you sure you want to delete this contact?
+      </div>
+      <h6 id="deleteMessage" style="text-align:center; color:red;"></h6>
+      <div class="modal-footer">
+        <button onclick="deleteContact(${id})" id="deleteButton"  type="button" class="btn btn-danger" data-dismiss="">Yes, delete</button>
+      </div>
+      </form>
+    </div>
+  </div>
+  </div>
+  `
+}
+
 function deleteContact(id) {
-  // console.log(id);
-  // return true;
+  console.log(id);
   // document.getElementById("delete-confirm").innerHTML += ``;
 
   let jsonPayload = {
