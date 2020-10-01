@@ -153,3 +153,18 @@ body {
   color: #ffffff;
   font-size: 2em;
 }
+
+.update-contact{
+  background: none;
+  border: none;
+  border-bottom: 1px solid #434a52;
+  color: #000000;
+  width: 100%;
+  padding: 0.475rem 0.75rem;
+}
+
+.update-contact:focus {
+  border: none;
+  color: #000000;
+  padding: 0.475rem 0.75rem;
+}
