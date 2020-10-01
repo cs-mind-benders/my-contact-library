@@ -167,7 +167,7 @@ function deleteContact(id) {
   // document.getElementById("delete-confirm").innerHTML += ``;
 
   let jsonPayload = {
-    contactID: id,
+    contactId: id,
   };
 
   let url = urlBase + "/DeleteContact." + extension;
