@@ -45,10 +45,10 @@ function doLogin() {
     let jsonObject = JSON.parse(xhr.responseText);
 
     userId = jsonObject.id;
+    error = jsonObject.error;
 
-    if (userId < 1) {
-      document.getElementById("loginResult").innerHTML =
-        "User/Password combination incorrect";
+    if (error.length > 0) {
+      document.getElementById("loginResult").innerHTML = error;
       return;
     }
 
