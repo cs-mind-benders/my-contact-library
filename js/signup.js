@@ -65,9 +65,9 @@ function addUser() {
         }
 
         document.getElementById("signUpForm").style.display = "none";
-        document.getElementById(
-          "signUpTitle"
-        ).innerHTML = `Welcome, ${firstName} ${lastName}, your account has been created successfully.`;
+        document.getElementById("signUpTitle").innerHTML = `
+        Welcome, ${firstName} ${lastName}, your account has been created successfully.
+        <a href="login.html">Return to login.</a>`;
       }
     };
     xhr.send(JSON.stringify(jsonPayload));
