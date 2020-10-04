@@ -96,13 +96,13 @@ function searchContact() {
                 <td id="em${contact.id}">${contact.email}</td>
                 <td>
                   <a href="#">
-                    <button type="button" class="btn btn-outline-info btn-rounded btn-sm" data-toggle="modal" data-target="#updateContactModalCenter">
+                    <button type="button" class="btn btn-outline-info btn-rounded btn-sm" data-toggle="modal" data-target="#updateContactModalCenter" data-backdrop="static">
                     <i onclick="editContactModal(${contact.id})" class="icon ion-edit contact-action">
                     </i>
                     </button> 
                   </a>
                   <a href="#">
-                    <button type="button" class="btn btn-outline-danger btn-rounded btn-sm" data-toggle="modal" data-target="#deleteContactModalCenter">
+                    <button type="button" class="btn btn-outline-danger btn-rounded btn-sm" data-toggle="modal" data-target="#deleteContactModalCenter" data-backdrop="static">
                       <i onclick="deleteConfirmation(${contact.id})" class="icon ion-android-delete contact-action">
                       </i>
                     </button>
