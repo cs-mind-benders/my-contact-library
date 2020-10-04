@@ -45,10 +45,10 @@ function doLogin() {
     let jsonObject = JSON.parse(xhr.responseText);
 
     userId = jsonObject.id;
+    error = jsonObject.error;
 
-    if (userId < 1) {
-      document.getElementById("loginResult").innerHTML =
-        "User/Password combination incorrect";
+    if (error.length > 0) {
+      document.getElementById("loginResult").innerHTML = error;
       return;
     }
 
@@ -71,8 +71,7 @@ function saveCookie() {
   let minutes = 30;
   let date = new Date();
   date.setTime(date.getTime() + minutes * 60 * 1000);
-  document.cookie = `firstName=${firstName}`;
-  document.cookie = `lastName=${lastName}`;
-  document.cookie = `userId=${userId}`;
-  document.cookie = `expires=${date.toGMTString()}`;
+  document.cookie = `firstName=${firstName};expires=${date.toGMTString()};`;
+  document.cookie = `lastName=${lastName};expires=${date.toGMTString()};`;
+  document.cookie = `userId=${userId};expires=${date.toGMTString()};`;
 }

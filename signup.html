@@ -20,53 +20,46 @@
   </head>
   <body>
     <div class="container">
-      <nav class="top-nav navbar navbar-expand-md fixed-top">
-        <a class="main-header" href="index.html">
-          <h3>My Contacts Library</h3>
-        </a>
-        <div class="contacts">
-          <i class="icon ion-android-contacts"></i>
-        </div>
-      </nav>
+      <nav class="top-nav navbar fixed-top">
+        <div class="float-left">
+            <a class="navbar-brand main-header" href="index.html"><h3>My Contacts Library</h3></a>
+            <i class="icon ion-android-contacts contacts"></i>
+          </div>
+    </nav>
       <div class="row">
         <div class="col-lg-6 col-md-8 mx-auto">
           <div class="card text-center text-white main-header rounded">
             <div class="card-header card-text">
                 <div class="card-body">
                     <h3 class="card-title" id="signUpTitle">Sign Up</h3>
-                    <form class="form" role="form" autocomplete="off" id="signUpForm" method="POST">
+                    <form class="form" autocomplete="off" id="signUpForm">
                         <div class="form-group">
                             <input class="form-control" name="firstname" placeholder="First Name" id="firstName">
-                            <div class="invalid-feedback">Oops, you missed this one.</div>
                         </div>
                         <div class="form-group">
                             <input class="form-control" name="lastname" placeholder="Last Name" id="lastName">
                         </input>
-                            <div class="invalid-feedback">Oops, you missed this one.</div>
                         </div>
                         <div class="form-group">
                                 <input class="form-control" type="email" name="email" placeholder="Email" id="email">
                             </input>
-                                <div class="invalid-feedback">Enter your email too!</div>
                             </div>
                         <div class="form-group">
                             <input class="form-control" name="login" placeholder="Username" id="signUpLogin">
-                            <div class="invalid-feedback">Oops, you missed this one.</div>
                         </div>
                         <div class="form-group">
                             <input class="form-control" type="password" name="password" placeholder="Password" id="loginPassword1">
                         </input>
-                            <div class="invalid-feedback">Enter your password too!</div>
                         </div>
                         <div class="form-group">
                               <input class="form-control" type="password" name="password" placeholder="Re-enter your password" id="loginPassword2" onChange="checkPasswordMatch()">
                               </input>
                               <div id="passwordMatchAlert"></div>
-                              <div class="invalid-feedback">Enter your password too!</div>
                             </div>
                         <div class="form-group">
                             <button class="btn btn-primary btn-block" type="button" onclick="addUser()">Sign Up</button>
                         </div>
+                        <span id="signUpError"></span>
                         <span id="signUpResult"></span>
                         <div class="card-footer">
                             <a class="login-help" href="login.html">Already have an account? Login.</a>
