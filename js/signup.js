@@ -1,7 +1,7 @@
 // Listen for the enter key press to "submit" the form
 window.addEventListener(
   "keypress",
-  function(e) {
+  function (e) {
     if (e.keyCode === 13) {
       addUser();
     }
@@ -32,7 +32,7 @@ function addUser() {
     FirstName: firstName,
     LastName: lastName,
     Email: email,
-    Password: hash
+    Password: hash,
   };
 
   let url = urlBase + "/Register." + extension;
@@ -42,8 +42,28 @@ function addUser() {
   xhr.open("POST", url, true);
   //   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
   try {
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
       if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+        let jsonObject = JSON.parse(xhr.responseText);
+
+        if (jsonObject.error) {
+          if (jsonObject.error.includes("Duplicate entry")) {
+            document.getElementById("signUpResult").innerHTML =
+              "Sorry, that username is already taken.";
+            return;
+          } else if (jsonObject.error == "Please fill out all the fields.") {
+            document.getElementById("signUpResult").innerHTML =
+              jsonObject.error;
+            return;
+          }
+        }
+
+        if (password == "") {
+          document.getElementById("signUpResult").innerHTML =
+            "Please provide a valid password.";
+          return;
+        }
+
         document.getElementById("signUpForm").style.display = "none";
         document.getElementById(
           "signUpTitle"
@@ -65,6 +85,6 @@ function checkPasswordMatch() {
   else $("#passwordMatchAlert").html("Passwords match.");
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
   $("#loginPassword2").keyup(checkPasswordMatch);
 });

@@ -115,7 +115,17 @@ function searchContact() {
             },
           });
         } else {
-          $("#resultsTable").DataTable().clear().draw();
+          if (!$.fn.DataTable.isDataTable("#resultsTable")) {
+            $("#resultsTable").DataTable({
+              searching: false,
+              lengthChange: false,
+              language: {
+                emptyTable: "No contacts found.",
+              },
+            });
+          } else {
+            $("#resultsTable").DataTable().clear().draw();
+          }
         }
       }
     };
