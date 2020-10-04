@@ -51,9 +51,7 @@ function getUserId() {
 }
 
 function resetUpdateMessage() {
-  document.getElementById(
-    "updateMessage"
-  ).innerHTML = ``;
+  document.getElementById("updateMessage").innerHTML = ``;
   searchContact();
 }
 
@@ -107,22 +105,10 @@ function searchContact() {
               </tr>
               `;
           }
-          $("#resultsTable").DataTable({
-            searching: false,
-            lengthChange: false,
-            language: {
-              emptyTable: "No contacts found.",
-            },
-          });
+          createTable();
         } else {
           if (!$.fn.DataTable.isDataTable("#resultsTable")) {
-            $("#resultsTable").DataTable({
-              searching: false,
-              lengthChange: false,
-              language: {
-                emptyTable: "No contacts found.",
-              },
-            });
+            createTable();
           } else {
             $("#resultsTable").DataTable().clear().draw();
           }
@@ -135,13 +121,23 @@ function searchContact() {
   }
 }
 
-function editContactModal(id)
-{
-  firstName = document.getElementById("fname"+id).innerText
-  lastName = document.getElementById("lname"+id).innerText
-  phone = document.getElementById("ph"+id).innerText
-  email = document.getElementById("em"+id).innerText
-  console.log(id)
+function createTable() {
+  $("#resultsTable").DataTable({
+    searching: false,
+    lengthChange: false,
+    language: {
+      emptyTable: "No contacts found.",
+    },
+    autoWidth: false,
+  });
+}
+
+function editContactModal(id) {
+  firstName = document.getElementById("fname" + id).innerText;
+  lastName = document.getElementById("lname" + id).innerText;
+  phone = document.getElementById("ph" + id).innerText;
+  email = document.getElementById("em" + id).innerText;
+  console.log(id);
   var searchResults = document.getElementById("search-results");
   searchResults.innerHTML += `
   <div class="modal fade" id="updateContactModalCenter" tabindex="-1" role="dialog" aria-labelledby="updateModalCenterTitle" aria-hidden="true">
@@ -180,7 +176,7 @@ function editContactModal(id)
       </form>
     </div>
   </div>
-</div>`
+</div>`;
 }
 
 function editContact(id) {
@@ -217,7 +213,6 @@ function editContact(id) {
   } catch (err) {
     document.getElementById("updateResult").innerHTML = err.message;
   }
-
 }
 
 function deleteContact(id) {
