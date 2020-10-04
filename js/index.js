@@ -50,6 +50,11 @@ function getUserId() {
   return userId;
 }
 
+function resetDeleteMessage() {
+  document.getElementById("deleteMessage").innerHTML = ``;
+  searchContact();
+}
+
 function resetUpdateMessage() {
   document.getElementById("updateMessage").innerHTML = ``;
   searchContact();
@@ -69,7 +74,6 @@ function searchContact() {
 
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
-  //   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
   try {
     xhr.onreadystatechange = function () {
       if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
@@ -97,10 +101,12 @@ function searchContact() {
                     </i>
                     </button> 
                   </a>
-                <a href="#">
-                  <i onclick="deleteContact(${contact.id})" class="icon ion-android-delete contact-action">
-                  </i>
-                </a>
+                  <a href="#">
+                    <button type="button" class="btn btn-outline-danger btn-rounded btn-sm" data-toggle="modal" data-target="#deleteContactModalCenter">
+                      <i onclick="deleteConfirmation(${contact.id})" class="icon ion-android-delete contact-action">
+                      </i>
+                    </button>
+                  </a>
                 </td>
               </tr>
               `;
@@ -215,10 +221,54 @@ function editContact(id) {
   }
 }
 
+function deleteConfirmation(id) {
+  var searchResults = document.getElementById("search-results");
+
+  searchResults.innerHTML += `
+  <div class="modal fade" id="deleteContactModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle" style="color:black;">Are you sure?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="resetDeleteMessage()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="form" role="form" autocomplete="off" id="deleteForm" method="POST">
+      <div class="modal-body" style="color:black;">
+      Are you sure you want to delete this contact?
+      </div>
+      <h6 id="deleteMessage" style="text-align:center; color:red;"></h6>
+      <div class="modal-footer">
+        <button onclick="deleteContact(${id})" id="deleteButton"  type="button" class="btn btn-danger" data-dismiss="">Yes, delete</button>
+      </div>
+      </form>
+    </div>
+  </div>
+  </div>
+  `;
+}
+
 function deleteContact(id) {
-  // call delete api
-  console.log(id);
-  return true;
+  let jsonPayload = {
+    contactId: id,
+  };
+
+  let url = urlBase + "/DeleteContact." + extension;
+  let xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+        document.getElementById("deleteMessage").innerHTML = "Contact Deleted";
+      }
+    };
+
+    xhr.send(JSON.stringify(jsonPayload));
+  } catch (err) {
+    document.getElementById("addResult").innerHTML = err.message;
+  }
 }
 
 function addContact() {
